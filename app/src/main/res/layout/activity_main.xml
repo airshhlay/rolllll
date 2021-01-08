@@ -6,13 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/disco_still"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/skip_backward_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/skip_backward"
+            android:padding="2dp"
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
+        </Button>
+
+        <Button
+            android:id="@+id/pause_play_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/play_pause"
+            android:padding="2dp"
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
+        </Button>
+
+        <Button
+            android:id="@+id/skip_forward_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/skip_forward"
+            android:padding="2dp"
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
+        </Button>
+
+        </LinearLayout>
+
+        <!--disco ball-->
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/disco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/disco"
+            tools:layout_editor_absoluteX="105dp"
+            tools:layout_editor_absoluteY="7dp" />
+
+        <!--characters-->
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/blobfish"
+            android:layout_width="152dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@id/clefairy"
+            android:src="@drawable/blobfish" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/clefairy"
+            android:layout_width="114dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/clefairy" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/squidward"
+            android:layout_width="127dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@id/blobfish"
+            android:src="@drawable/squidward" />
+
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
