@@ -88,7 +88,6 @@
             android:src="@drawable/dj_dude" />
 
         <GridView
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/grid_view"
             android:layout_height="250dp"
             android:layout_width="match_parent"
@@ -100,10 +99,40 @@
             android:stretchMode="columnWidth"
             android:layout_alignParentBottom="true"
         >
-
         </GridView>
 
     </RelativeLayout>
 
+    <!--Overlay for normal disco lighting effect-->
+    <RelativeLayout
+        android:id="@+id/disco_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:alpha="0.5"/>
+
+    <!-- Overlay for sad crying in the club -->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/rain_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:src="@drawable/rainy"/>
+
+    <!--Huge ass stars-->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/star_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:src="@drawable/stars"/>
+
+    <!--Tiny stars-->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/dense_star_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:src="@drawable/stars2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
