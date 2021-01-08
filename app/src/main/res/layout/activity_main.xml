@@ -6,13 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:background="@drawable/disco_still">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/disco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/disco"
+            tools:layout_editor_absoluteX="105dp"
+            tools:layout_editor_absoluteY="7dp" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/blobfish"
+            android:layout_width="152dp"
+            android:layout_height="50dp"
+            android:src="@drawable/blobfish"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/clefairy"/>
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/clefairy"
+            android:layout_width="114dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/clefairy"
+            android:layout_alignParentBottom="true"/>
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/squidward"
+            android:layout_width="127dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/squidward"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/blobfish"/>
+
+
+    </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
