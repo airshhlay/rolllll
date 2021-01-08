@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.content.Intent;
+import android.view.View;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
 import com.spotify.android.appremote.api.error.NotLoggedInException;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
@@ -31,9 +36,25 @@ public class MainActivity extends AppCompatActivity {
     private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
 
+    GridView grid;
+
+    int characters[] = {
+            R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
+            R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
+            R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
+            R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,};
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        grid = (GridView) findViewById(R.id.grid_view); // init gridview
+        // create custom adapter, set adapter to gridview
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
+        grid.setAdapter(customAdapter);
+
     }
 
     @Override
@@ -139,4 +160,86 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    // playback controls
+    public void playOrPause(View view) {
+        try {
+            if (mSpotifyAppRemote == null) {
+                throw new NullPointerException();
+            }
+            Log.d("MainActivity", "Play or pause: reached here");
+            PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+            playerApi
+                    .subscribeToPlayerState()
+                    .setEventCallback(playerState -> {
+                        final Track track = playerState.track;
+                        final boolean isPaused = playerState.isPaused;
+                        if (isPaused) {
+                            // resume
+                            playerApi.resume();
+                            Log.d("MainActivity", "Resumed the song: " + track.name);
+                        } else {
+                            playerApi.pause();
+                            Log.d("MainActivity", "Paused the song: " + track.name);
+                        }
+                    });
+        } catch (NullPointerException e) {
+            Log.e("MainActivity", "Play or Pause: null pointer exception");
+        }
+
+    }
+
+    public void skipBackward(View view) {
+        try {
+            if (mSpotifyAppRemote == null) {
+                throw new NullPointerException();
+            }
+            Log.d("MainActivity", "Skip Backward: reached here");
+            PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+            playerApi
+                    .subscribeToPlayerState()
+                    .setEventCallback(playerState -> {
+                        playerApi.skipPrevious();
+                        //                updateNowPlaying();
+                    });
+        } catch (NullPointerException e) {
+            Log.e("MainActivity", "Skip Backward: null pointer exception");
+        }
+
+    }
+
+    public void skipForward(View view) {
+        try {
+            if (mSpotifyAppRemote == null) {
+                throw new NullPointerException();
+            }
+            Log.d("MainActivity", "Skip Forward: reached here");
+            PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+            playerApi
+                    .subscribeToPlayerState()
+                    .setEventCallback(playerState -> {
+                        playerApi.skipNext();
+//                updateNowPlaying();
+                    });
+        } catch (NullPointerException e) {
+            Log.e("MainActivity", "Skip Forward: null pointer exception");
+        }
+
+    }
+
+//    public void updateNowPlaying() {
+//        mSpotifyAppRemote.getPlayerApi()
+//                .subscribeToPlayerState()
+//                .setEventCallback(playerState -> {
+//                    final Track track = playerState.track;
+//                    if (track != null) {
+//                        Log.d("MainActivity", "In updateNowPlaying, track detected");
+//                        TextView textView = findViewById(R.id.now_playing);
+//                        // update now playing
+//                        textView.setText("dj is playing: " + track.name);
+//                    }
+//                });
+//
+//
+//    }
 }
