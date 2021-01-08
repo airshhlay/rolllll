@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 case UNKNOWN:
                     Log.e("MainActivity", "Unknown Error");
                     break;
+                default:
+                    Log.e("MainActivity", "Default reached");
             }
         }
     }
