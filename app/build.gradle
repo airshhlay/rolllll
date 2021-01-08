@@ -33,8 +33,12 @@ dependencies {
     implementation project(path: ':spotify-auth-release-1.2.3')
     implementation project(path: ':spotify-app-remote-release-0.7.1')
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation project(path: ':okhttp-4.9.0')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'io.alterac.blurkit:blurkit:1.0.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61'
+    implementation 'com.squareup.okio:okio:2.0.0'
 }

@@ -14,13 +14,9 @@ import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
-
-import com.spotify.protocol.client.Subscription;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.protocol.types.Track;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
-import java.nio.channels.ClosedByInterruptException;
+import com.spotify.protocol.types.Track;
 
 /*
 Code referenced from :
@@ -31,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "ab9a26a16bde446a87940a4203e3b808";
     private static final int REQUEST_CODE = 1337;
-    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private static String USER_TOKEN;
+    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +111,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void connected() {
-        // Play a playlist
-        // mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
                 .subscribeToPlayerState()
@@ -125,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
                     final Track track = playerState.track;
                     if (track != null) {
                         Log.d("MainActivity", track.name + " by " + track.artist.name);
+
+                        // retrieve the track id
+                        String trackUri = track.uri;
+                        String trackId = trackUri.split(":")[2];
+
+                        Log.d("MainActivity", trackId);
+                        PseudoJson result = HTTPAdapter.getAudioFeatures(USER_TOKEN, trackId);
                     }
                 });
     }
