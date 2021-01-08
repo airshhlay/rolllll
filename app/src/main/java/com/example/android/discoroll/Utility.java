@@ -38,13 +38,10 @@ public class Utility {
         random = new Random();
     }
 
-    public void controlDiscoLighting() {
-
-    }
 
     public void changeDiscoOverlay() {
         if (discoView.getVisibility() == View.INVISIBLE) {
-            enableDiscoOverlay();
+            enableDiscoOverlay();;
         }
 
         int colorIndex = random.nextInt(discoColors.length);
@@ -87,7 +84,4 @@ public class Utility {
                 Toast.LENGTH_SHORT).show();
 
     }
-
-
-
 }
