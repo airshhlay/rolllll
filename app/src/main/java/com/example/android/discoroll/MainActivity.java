@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static String USER_TOKEN;
     private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
+    Genre genre;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
