@@ -2,13 +2,16 @@ package com.example.android.discoroll;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.content.Intent;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -23,6 +26,8 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 import com.spotify.protocol.types.Track;
 
+import java.util.HashMap;
+
 /*
 Code referenced from :
 https://developer.spotify.com/documentation/android/quick-start/#next-steps
@@ -35,8 +40,29 @@ public class MainActivity extends AppCompatActivity {
     private static String USER_TOKEN;
     private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
+    // for disco lighting
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private int delay = 5000;
+    private int star_showtime = 400;
 
     GridView grid;
+    View discoView;
+
+    // Color reference taken from https://www.schemecolor.com/disco-dance.php
+    private int discoColors[] = {Color.rgb(15, 192, 252),
+            Color.rgb(123,29,175), Color.rgb(255, 47, 185),
+            Color.rgb(212, 155, 71), Color.rgb(27,54,73)};
+
+    private int currColorIndex = 0; // for cycling through disco colours
+
+
+    private HashMap<String, String> toastMessages = new HashMap<String, String>() {{
+        put("sad", "AIN'T NO CRYIN' IN THE CLUB AY AY~");
+        put("depressed", "...You okay bro?");
+        put("happy", "AY AY AY LET'S GEDDIT");
+        put("hyper", "PUT YOUR HANDS UP!!!!!!!!!@%");
+    }};
 
     int characters[] = {
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
@@ -47,13 +73,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        grid = (GridView) findViewById(R.id.grid_view); // init gridview
-        // create custom adapter, set adapter to gridview
-
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
-        grid.setAdapter(customAdapter);
 
     }
 
@@ -70,6 +90,41 @@ public class MainActivity extends AppCompatActivity {
 
         AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request);
         Log.d("MainActivity", "Request sent");
+
+
+        // setup layout only after logged in
+        setContentView(R.layout.activity_main);
+
+        grid = (GridView) findViewById(R.id.grid_view); // init gridview
+        // create custom adapter, set adapter to gridview
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
+        grid.setAdapter(customAdapter);
+
+        discoView = findViewById(R.id.disco_overlay);
+    }
+
+    // disco lighting
+    // calls method to change disco lighting
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    private void changeDiscoOverlay() {
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable); // stop handler when activity not visible super.onPause();
     }
 
     @Override
@@ -157,8 +212,25 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d("MainActivity", trackId);
                         PseudoJson result = HTTPAdapter.getAudioFeatures(USER_TOKEN, trackId);
+
+                        // call letsGoDisco(Genre) here after classifying
                     }
                 });
+    }
+
+    private void letsGoDisco(String s) {
+        // will add a switch case here to determine the transition time + colour scheme
+
+        // show toast based on genre
+        showToast(toastMessages.get(s));
+
+        //
+    }
+
+    private void showToast(String toastMessage) {
+        Toast.makeText(MainActivity.this, toastMessage,
+                Toast.LENGTH_SHORT).show();
+
     }
 
     // playback controls
