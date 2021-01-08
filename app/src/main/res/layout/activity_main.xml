@@ -6,14 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/disco_still"
         android:paddingLeft="16dp"
+        android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
-        android:paddingTop="16dp"
-        android:background="@drawable/disco_still">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/skip_backward_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/skip_backward"
+            android:padding="2dp"
+            android:layout_toLeftOf="@id/pause_play_btn"
+            android:marginLeft="2dp">
+        </Button>
+
+        <Button
+            android:id="@+id/pause_play_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/play_pause"
+            android:padding="2dp"
+            android:marginLeft="2dp">
+        </Button>
+
+        <Button
+            android:id="@+id/skip_forward_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/skip_forward"
+            android:padding="2dp"
+            android:marginLeft="2dp"
+            android:layout_toRightOf="@id/pause_play_btn">
+        </Button>
+
+        </LinearLayout>
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/disco"
@@ -27,40 +65,39 @@
             android:id="@+id/blobfish"
             android:layout_width="152dp"
             android:layout_height="50dp"
-            android:src="@drawable/blobfish"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/clefairy"/>
+            android:layout_toRightOf="@id/clefairy"
+            android:src="@drawable/blobfish" />
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/clefairy"
             android:layout_width="114dp"
             android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
-            android:src="@drawable/clefairy"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/clefairy" />
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/squidward"
             android:layout_width="127dp"
             android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
-            android:src="@drawable/squidward"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/blobfish"/>
+            android:layout_toRightOf="@id/blobfish"
+            android:src="@drawable/squidward" />
 
 
     </RelativeLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
