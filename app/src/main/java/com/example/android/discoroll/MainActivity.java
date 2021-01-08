@@ -7,16 +7,23 @@ import android.util.Log;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
+import com.spotify.android.appremote.api.error.NotLoggedInException;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import com.spotify.protocol.client.Subscription;
 import com.spotify.protocol.types.PlayerState;
 import com.spotify.protocol.types.Track;
 
+/*
+Code referenced from :
+https://developer.spotify.com/documentation/android/quick-start/#next-steps
+ */
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CLIENT_ID = "your_client_id";
-    private static final String REDIRECT_URI = "com.yourdomain.yourapp://callback";
+    private static final String CLIENT_ID = "ab9a26a16bde446a87940a4203e3b808";
+    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        Log.d("MainActivity", "Program starting...");
         super.onStart();
         ConnectionParams connectionParams =
                 new ConnectionParams.Builder(CLIENT_ID)
@@ -45,9 +53,16 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     public void onFailure(Throwable throwable) {
-                        Log.e("MyActivity", throwable.getMessage(), throwable);
-
-                        // Something went wrong when attempting to connect! Handle errors here
+                        // Something went wrong when attempting to connect!
+                        if (throwable instanceof CouldNotFindSpotifyApp){
+                            // redirect to page to download application
+                            Log.e("MyActivity", "Missing Spotify application");
+                        } else if (throwable instanceof NotLoggedInException) {
+                            // redirect to spotify app to log in
+                            Log.e("MyActivity", "Not Logged In");
+                        } else {
+                            Log.e("MyActivity", throwable.getMessage(), throwable);
+                        }
                     }
                 });
     }
