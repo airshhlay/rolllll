@@ -1,7 +1,7 @@
 package com.example.android.discoroll;
 
 public enum Genre {
-    // in pairs of energy level
+    // in pairs of energy level, low and high
 
     // negative + still
     DEAD,
