@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.content.Intent;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
 import com.spotify.android.appremote.api.error.NotLoggedInException;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
@@ -139,4 +143,60 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    // playback controls
+    public void playOrPause(View view) {
+        PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+        playerApi
+            .subscribeToPlayerState()
+            .setEventCallback(playerState -> {
+                final Track track = playerState.track;
+                final boolean isPaused = playerState.isPaused;
+                if (isPaused) {
+                    // resume
+                    playerApi.resume();
+                    Log.d("MainActivity", "Resumed the song: " + track.name);
+                } else {
+                    playerApi.pause();
+                    Log.d("MainActivity", "Paused the song: " + track.name);
+                }
+            });
+    }
+
+    public void skipBackward(View view) {
+        PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+        playerApi
+            .subscribeToPlayerState()
+            .setEventCallback(playerState -> {
+                playerApi.skipPrevious();
+//                updateNowPlaying();
+            });
+
+    }
+
+    public void skipForward(View view) {
+        PlayerApi playerApi = mSpotifyAppRemote.getPlayerApi();
+        playerApi
+            .subscribeToPlayerState()
+            .setEventCallback(playerState -> {
+                playerApi.skipNext();
+//                updateNowPlaying();
+            });
+    }
+
+//    public void updateNowPlaying() {
+//        mSpotifyAppRemote.getPlayerApi()
+//                .subscribeToPlayerState()
+//                .setEventCallback(playerState -> {
+//                    final Track track = playerState.track;
+//                    if (track != null) {
+//                        Log.d("MainActivity", "In updateNowPlaying, track detected");
+//                        TextView textView = findViewById(R.id.now_playing);
+//                        // update now playing
+//                        textView.setText("dj is playing: " + track.name);
+//                    }
+//                });
+//
+//
+//    }
 }

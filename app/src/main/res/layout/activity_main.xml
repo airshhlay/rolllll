@@ -18,41 +18,54 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
+        <!--Spotify Controls-->
         <LinearLayout
+            android:id="@+id/spotify_controls"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             style="?android:attr/buttonBarStyle">
 
-        <Button
-            android:id="@+id/skip_backward_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/skip_backward"
-            android:padding="2dp"
-            android:layout_marginLeft="2dp"
-            style="?android:attr/buttonBarButtonStyle">
-        </Button>
+            <Button
+                android:id="@+id/skip_backward_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/skip_backward"
+                android:padding="2dp"
+                android:layout_marginStart="2dp"
+                android:onClick="skipBackward"
+                style="?android:attr/buttonBarButtonStyle">
+            </Button>
 
-        <Button
-            android:id="@+id/pause_play_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/play_pause"
-            android:padding="2dp"
-            android:layout_marginLeft="2dp"
-            style="?android:attr/buttonBarButtonStyle">
-        </Button>
+            <Button
+                android:id="@+id/pause_play_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/play_pause"
+                android:padding="2dp"
+                android:layout_marginStart="2dp"
+                android:onClick="playOrPause"
+                style="?android:attr/buttonBarButtonStyle">
+            </Button>
 
-        <Button
-            android:id="@+id/skip_forward_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/skip_forward"
-            android:padding="2dp"
-            android:layout_marginLeft="2dp"
-            style="?android:attr/buttonBarButtonStyle">
-        </Button>
+            <Button
+                android:id="@+id/skip_forward_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/skip_forward"
+                android:padding="2dp"
+                android:layout_marginStart="2dp"
+                android:onClick="skipForward"
+                style="?android:attr/buttonBarButtonStyle">
+            </Button>
+
+<!--            <TextView-->
+<!--                android:id="@+id/now_playing"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="dj is jobless"-->
+<!--                android:textColor="#999">-->
+<!--            </TextView>-->
 
         </LinearLayout>
 
