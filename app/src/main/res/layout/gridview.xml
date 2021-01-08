@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--    &lt;!&ndash;characters&ndash;&gt;-->
+<!--    &lt;!&ndash;bottom most row&ndash;&gt;-->
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/blobfish"-->
+<!--        android:layout_width="152dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="0dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:paddingHorizontal="0dp"-->
+<!--        android:paddingVertical="0dp"-->
+<!--        android:layout_toEndOf="@id/clefairy"-->
+<!--        android:src="@drawable/blobfish" />-->
+
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/clefairy"-->
+<!--        android:layout_width="114dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="0dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:paddingHorizontal="0dp"-->
+<!--        android:paddingVertical="0dp"-->
+<!--        android:src="@drawable/clefairy" />-->
+
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/squidward"-->
+<!--        android:layout_width="127dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="0dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:paddingHorizontal="0dp"-->
+<!--        android:paddingVertical="0dp"-->
+<!--        android:layout_toEndOf="@id/blobfish"-->
+<!--        android:src="@drawable/squidward" />-->
+
+<!--    &lt;!&ndash;next row&ndash;&gt;-->
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/man"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="0dp"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:paddingHorizontal="0dp"-->
+<!--        android:paddingVertical="0dp"-->
+<!--        android:layout_alignTop="@id/squidward"-->
+<!--        android:src="@drawable/black_coat_dude" />-->
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/character"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="2dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

@@ -78,42 +78,30 @@
             tools:layout_editor_absoluteX="105dp"
             tools:layout_editor_absoluteY="7dp" />
 
-        <!--characters-->
+        <!-- DJ-->
         <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/blobfish"
-            android:layout_width="152dp"
-            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@id/clefairy"
-            android:src="@drawable/blobfish" />
+            android:layout_marginBottom="200dp"
+            android:src="@drawable/dj_dude" />
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/clefairy"
-            android:layout_width="114dp"
-            android:layout_height="50dp"
+        <GridView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/grid_view"
+            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:numColumns="auto_fit"
+            android:columnWidth="60dp"
+            android:horizontalSpacing="4dp"
+            android:verticalSpacing="3dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:src="@drawable/clefairy" />
+        >
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/squidward"
-            android:layout_width="127dp"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@id/blobfish"
-            android:src="@drawable/squidward" />
-
+        </GridView>
 
     </RelativeLayout>
 
