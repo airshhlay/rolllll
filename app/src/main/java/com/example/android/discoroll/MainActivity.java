@@ -65,8 +65,18 @@ public class MainActivity extends AppCompatActivity {
                     USER_TOKEN = response.getAccessToken();
                     successfulAuthorization();
                     break;
-                default:
-                    Log.e("MainActivity", "Authorization error");
+                case CODE:
+                    Log.e("MainActivity", "Code Error");
+                    break;
+                case ERROR:
+                    Log.e("MainActivity", "True Error");
+                    break;
+                case EMPTY:
+                    Log.e("MainActivity", "Empty Field");
+                    break;
+                case UNKNOWN:
+                    Log.e("MainActivity", "Unknown Error");
+                    break;
             }
         }
     }
@@ -84,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                         mSpotifyAppRemote = spotifyAppRemote;
                         Log.d("MainActivity", "Connected! Yay!");
-
                         // Now you can start interacting with App Remote
                         connected();
                     }

@@ -4,18 +4,14 @@ import android.util.Log;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-import com.google.gson.Gson;
-
 import java.io.IOException;
 
 public class HTTPAdapter {
-
     private static String apiEndpoint = "https://api.spotify.com/v1/";
     private static OkHttpClient client = new OkHttpClient();
 
