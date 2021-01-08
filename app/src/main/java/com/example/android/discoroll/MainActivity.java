@@ -23,7 +23,7 @@ https://developer.spotify.com/documentation/android/quick-start/#next-steps
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "ab9a26a16bde446a87940a4203e3b808";
-    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback";
+    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     protected void onCreate(Bundle savedInstanceState) {
