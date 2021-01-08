@@ -21,15 +21,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            style="?android:attr/buttonBarStyle">
+
         <Button
             android:id="@+id/skip_backward_btn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/skip_backward"
             android:padding="2dp"
-            android:layout_toLeftOf="@id/pause_play_btn"
-            android:marginLeft="2dp">
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
         </Button>
 
         <Button
@@ -38,7 +40,8 @@
             android:layout_height="20dp"
             android:background="@drawable/play_pause"
             android:padding="2dp"
-            android:marginLeft="2dp">
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
         </Button>
 
         <Button
@@ -47,12 +50,13 @@
             android:layout_height="20dp"
             android:background="@drawable/skip_forward"
             android:padding="2dp"
-            android:marginLeft="2dp"
-            android:layout_toRightOf="@id/pause_play_btn">
+            android:layout_marginLeft="2dp"
+            style="?android:attr/buttonBarButtonStyle">
         </Button>
 
         </LinearLayout>
 
+        <!--disco ball-->
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/disco"
             android:layout_width="match_parent"
@@ -61,6 +65,7 @@
             tools:layout_editor_absoluteX="105dp"
             tools:layout_editor_absoluteY="7dp" />
 
+        <!--characters-->
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/blobfish"
             android:layout_width="152dp"
@@ -70,7 +75,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@id/clefairy"
+            android:layout_toEndOf="@id/clefairy"
             android:src="@drawable/blobfish" />
 
         <pl.droidsonroids.gif.GifImageView
@@ -93,7 +98,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toRightOf="@id/blobfish"
+            android:layout_toEndOf="@id/blobfish"
             android:src="@drawable/squidward" />
 
 
