@@ -27,6 +27,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 import com.spotify.protocol.types.Track;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /*
 Code referenced from :
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable runnable;
     private int delay = 5000;
     private int star_showtime = 400;
+    private Random random;
 
     GridView grid;
     View discoView;
@@ -74,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO: setup actual layout only after logged in
+        setContentView(R.layout.activity_main);
 
+        grid = (GridView) findViewById(R.id.grid_view); // init gridview
+        // create custom adapter, set adapter to gridview
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
+        grid.setAdapter(customAdapter);
+
+        discoView = findViewById(R.id.disco_overlay);
+
+        random = new Random();
     }
 
     @Override
@@ -92,16 +105,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity", "Request sent");
 
 
-        // setup layout only after logged in
-        setContentView(R.layout.activity_main);
 
-        grid = (GridView) findViewById(R.id.grid_view); // init gridview
-        // create custom adapter, set adapter to gridview
-
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
-        grid.setAdapter(customAdapter);
-
-        discoView = findViewById(R.id.disco_overlay);
     }
 
     // disco lighting
@@ -111,14 +115,36 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-
+                changeDiscoOverlay();
             }
         }, delay);
         super.onResume();
     }
 
     private void changeDiscoOverlay() {
+        if (discoView.getVisibility() == View.INVISIBLE) {
+            enableDiscoOverlay();
+        }
 
+        int colorIndex = random.nextInt(discoColors.length);
+        discoView.setBackgroundColor(discoColors[colorIndex]);
+
+    }
+
+    private void disableDiscoOverlay() {
+        discoView.setVisibility(View.INVISIBLE);
+    }
+
+    private void enableDiscoOverlay() {
+        discoView.setVisibility(View.VISIBLE);
+    }
+
+    private void setSadDiscoOverlay() {
+        if (discoView.getVisibility() == View.INVISIBLE) {
+            enableDiscoOverlay();
+        }
+
+        discoView.setBackgroundColor(Color.BLACK);
     }
 
     @Override
@@ -218,13 +244,18 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    // determines the mood of the currently playing song and sets up UI animations accordingly
     private void letsGoDisco(String s) {
         // will add a switch case here to determine the transition time + colour scheme
 
         // show toast based on genre
         showToast(toastMessages.get(s));
 
-        //
+        // if happy, start disco + play stars for 3 seconds
+        // if hyper, start disco (shorter interval) + play stars for 3 seconds
+        // if sad, start rain
+        // if depressed, start rain + set disco overlay to black :(
+        // if neutral, disable disco overlay and disable rain (if have)
     }
 
     private void showToast(String toastMessage) {
