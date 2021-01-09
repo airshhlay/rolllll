@@ -3,6 +3,7 @@ package com.example.android.discoroll;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -162,6 +163,8 @@ public class Utility {
         double energy = Double.valueOf(features.getValue("energy"));
         double danceability = Double.valueOf(features.getValue("danceability"));
         double acousticness = Double.valueOf(features.getValue("acousticness"));
+
+        Log.d("song cat", String.valueOf(liveliness));
 
         if (acousticness >= 0.95 || liveliness <= 0.2 || danceability <= 0.2 || energy <= 0.2) {
             return SongCat.DEPRESSED;

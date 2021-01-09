@@ -73,7 +73,9 @@ public class SpotifyAdapter {
 
                     // TODO: after getting the features, call utility.letsGoDisco(MainActivity.this, SongCat sc);
                     // need you to help me select a songcat!
+                    Log.d("FEATURES", currentFeatures.toString());
                     SongCat sc = utility.determineSongCat(currentFeatures);
+                    Log.d("SONG CAT", sc.toString());
                     utility.letsGoDisco(context, sc);
                 }
             });
