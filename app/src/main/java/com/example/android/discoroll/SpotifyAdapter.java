@@ -21,7 +21,7 @@ public class SpotifyAdapter {
     private static PlayerState currentState;
     private static PseudoJson currentFeatures;
 
-    public static void connectToApp(Context context){
+    public static void connectToApp(Utility utility, Context context){
         ConnectionParams connectionParams =
             new ConnectionParams.Builder(CLIENT_ID)
                 .setRedirectUri(REDIRECT_URI)
@@ -35,7 +35,7 @@ public class SpotifyAdapter {
                     mSpotifyAppRemote = spotifyAppRemote;
                     Log.d("Spotify", "Connected!");
                     // Now you can start interacting with App Remote
-                    connected();
+                    connected(utility, context);
                 }
 
                 public void onFailure(Throwable throwable) {
@@ -57,7 +57,7 @@ public class SpotifyAdapter {
         SpotifyAppRemote.disconnect(mSpotifyAppRemote);
     }
 
-    private static void connected() {
+    private static void connected(Utility utility, Context context) {
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
             .subscribeToPlayerState()
@@ -73,6 +73,7 @@ public class SpotifyAdapter {
 
                     // TODO: after getting the features, call utility.letsGoDisco(MainActivity.this, SongCat sc);
                     // need you to help me select a songcat!
+                    utility.letsGoDisco(context, SongCat.HYPER);
                 }
             });
     }
