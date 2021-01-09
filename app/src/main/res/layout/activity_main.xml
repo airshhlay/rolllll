@@ -125,14 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
-        android:src="@drawable/stars"/>
-
-    <!--Tiny stars-->
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/dense_star_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
         android:src="@drawable/stars2"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

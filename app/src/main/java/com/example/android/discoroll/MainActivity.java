@@ -62,27 +62,24 @@ public class MainActivity extends AppCompatActivity {
         grid.setAdapter(customAdapter);
 
         View discoView = findViewById(R.id.disco_overlay);
+        View rainView = findViewById(R.id.rain_overlay);
+        View starView = findViewById(R.id.star_overlay);
 
-        utility = new Utility(discoView);
+        utility = new Utility(discoView, rainView, starView, handler);
     }
 
     @Override
     protected void onStart() {
         Log.d("MainActivity", "Program starting...");
         super.onStart();
-        SpotifyAdapter.connectToApp(this);
+        SpotifyAdapter.connectToApp(utility, this);
     }
 
     // disco lighting
     // calls method to change disco lighting
     @Override
     protected void onResume() {
-        handler.postDelayed(runnable = new Runnable() {
-            public void run() {
-                handler.postDelayed(runnable, delay);
-                utility.changeDiscoOverlay();
-            }
-        }, delay);
+        utility.changeDiscoOverlay();
         super.onResume();
     }
 
@@ -95,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         SpotifyAdapter.disconnectFromApp();
 
     }
