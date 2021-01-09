@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
+            R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,};
 
     @RequiresApi(api = Build.VERSION_CODES.O)

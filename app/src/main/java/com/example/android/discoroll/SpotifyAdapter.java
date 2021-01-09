@@ -73,7 +73,7 @@ public class SpotifyAdapter {
 
                     // TODO: after getting the features, call utility.letsGoDisco(MainActivity.this, SongCat sc);
                     // need you to help me select a songcat!
-                    utility.letsGoDisco(context, SongCat.HAPPY);
+                    utility.letsGoDisco(context, SongCat.NEUTRAL);
                 }
             });
     }
