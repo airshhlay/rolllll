@@ -70,6 +70,9 @@ public class SpotifyAdapter {
                     // retrieve the track id
                     String trackId = track.uri.split(":")[2];
                     currentFeatures = HTTPAdapter.getAudioFeatures(trackId);
+
+                    // TODO: after getting the features, call utility.letsGoDisco(MainActivity.this, SongCat sc);
+                    // need you to help me select a songcat!
                 }
             });
     }
