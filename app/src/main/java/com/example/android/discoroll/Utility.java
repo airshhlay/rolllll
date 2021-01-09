@@ -52,10 +52,8 @@ public class Utility {
 
 
     public void changeDiscoOverlay() {
-        if (discoView.getVisibility() == View.VISIBLE) {
-            int colorIndex = random.nextInt(discoColors.length);
-            discoView.setBackgroundColor(discoColors[colorIndex]);
-        }
+        int colorIndex = random.nextInt(discoColors.length);
+        discoView.setBackgroundColor(discoColors[colorIndex]);
     }
 
     public void startDiscoLights(SongCat sc) {
