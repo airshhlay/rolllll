@@ -25,30 +25,20 @@ https://developer.spotify.com/documentation/android/quick-start/#next-steps
  */
 
 public class MainActivity extends AppCompatActivity {
-    // for disco lighting
-    private Handler handler = new Handler();
-    private Runnable runnable;
-    private int delay = 5000;
-    private int star_showtime = 400;
-    private Random random;
+
+    private static final String CLIENT_ID = "ab9a26a16bde446a87940a4203e3b808";
+    private static final int REQUEST_CODE = 1337;
+    private static String USER_TOKEN;
+    private static final String REDIRECT_URI = "http://com.example.android.discoroll://callback/";
 
     GridView grid;
-    View discoView;
 
-    // Color reference taken from https://www.schemecolor.com/disco-dance.php
-    private int discoColors[] = {Color.rgb(15, 192, 252),
-            Color.rgb(123,29,175), Color.rgb(255, 47, 185),
-            Color.rgb(212, 155, 71), Color.rgb(27,54,73)};
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private Utility utility;
 
-    private int currColorIndex = 0; // for cycling through disco colours
+    private int delay = 5000;
 
-
-    private HashMap<String, String> toastMessages = new HashMap<String, String>() {{
-        put("sad", "AIN'T NO CRYIN' IN THE CLUB AY AY~");
-        put("depressed", "...You okay bro?");
-        put("happy", "AY AY AY LET'S GEDDIT");
-        put("hyper", "PUT YOUR HANDS UP!!!!!!!!!@%");
-    }};
 
     int characters[] = {
             R.drawable.squidward, R.drawable.squidward, R.drawable.squidward,
@@ -71,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), characters);
         grid.setAdapter(customAdapter);
 
-        discoView = findViewById(R.id.disco_overlay);
+        View discoView = findViewById(R.id.disco_overlay);
 
-        random = new Random();
+        utility = new Utility(discoView);
     }
 
     @Override
@@ -90,36 +80,10 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-                changeDiscoOverlay();
+                utility.changeDiscoOverlay();
             }
         }, delay);
         super.onResume();
-    }
-
-    private void changeDiscoOverlay() {
-        if (discoView.getVisibility() == View.INVISIBLE) {
-            enableDiscoOverlay();
-        }
-
-        int colorIndex = random.nextInt(discoColors.length);
-        discoView.setBackgroundColor(discoColors[colorIndex]);
-
-    }
-
-    private void disableDiscoOverlay() {
-        discoView.setVisibility(View.INVISIBLE);
-    }
-
-    private void enableDiscoOverlay() {
-        discoView.setVisibility(View.VISIBLE);
-    }
-
-    private void setSadDiscoOverlay() {
-        if (discoView.getVisibility() == View.INVISIBLE) {
-            enableDiscoOverlay();
-        }
-
-        discoView.setBackgroundColor(Color.BLACK);
     }
 
     @Override
@@ -131,28 +95,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
         SpotifyAdapter.disconnectFromApp();
-    }
-
-    // determines the mood of the currently playing song and sets up UI animations accordingly
-    private void letsGoDisco(String s) {
-        // will add a switch case here to determine the transition time + colour scheme
-
-        // show toast based on genre
-        showToast(toastMessages.get(s));
-
-        // if happy, start disco + play stars for 3 seconds
-        // if hyper, start disco (shorter interval) + play stars for 3 seconds
-        // if sad, start rain
-        // if depressed, start rain + set disco overlay to black :(
-        // if neutral, disable disco overlay and disable rain (if have)
-    }
-
-    private void showToast(String toastMessage) {
-        Toast.makeText(MainActivity.this, toastMessage,
-                Toast.LENGTH_SHORT).show();
 
     }
+
 
     // playback controls
     public void playOrPause(View view) {
@@ -168,4 +115,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Main", "Forward Pressed");
         SpotifyAdapter.skipForward();
     }
+
+//    public void updateNowPlaying() {
+//        mSpotifyAppRemote.getPlayerApi()
+//                .subscribeToPlayerState()
+//                .setEventCallback(playerState -> {
+//                    final Track track = playerState.track;
+//                    if (track != null) {
+//                        Log.d("MainActivity", "In updateNowPlaying, track detected");
+//                        TextView textView = findViewById(R.id.now_playing);
+//                        // update now playing
+//                        textView.setText("dj is playing: " + track.name);
+//                    }
+//                });
+//
+//
+//    }
 }
