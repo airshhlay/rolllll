@@ -156,4 +156,23 @@ public class Utility {
         Toast.makeText(context, toastMessage,
                 Toast.LENGTH_SHORT).show();
     }
+
+    public SongCat determineSongCat(PseudoJson features) {
+        double liveliness = Double.valueOf(features.getValue("liveliness"));
+        double energy = Double.valueOf(features.getValue("energy"));
+        double danceability = Double.valueOf(features.getValue("danceability"));
+        double acousticness = Double.valueOf(features.getValue("acousticness"));
+
+        if (acousticness >= 0.95 || liveliness <= 0.2 || danceability <= 0.2 || energy <= 0.2) {
+            return SongCat.DEPRESSED;
+        } else if (liveliness >= 0.95 || danceability >= 0.95 || energy >= 0.95) {
+            return SongCat.HYPER;
+        } else if (liveliness >= 0.8 || danceability >= 0.8 || energy >= 0.8) {
+            return SongCat.HAPPY;
+        } else if ((liveliness <= 0.4 || danceability <= 0.4 || energy <= 0.4) && acousticness >= 0.7) {
+            return SongCat.SAD;
+        } else {
+            return SongCat.NEUTRAL;
+        }
+    }
 }
